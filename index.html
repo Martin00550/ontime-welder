@@ -239,6 +239,17 @@
         inset 4px -4px 0 -2px rgba(211,84,0,0.4),
         inset -4px -4px 0 -2px rgba(211,84,0,0.4);
     }
+    .services-container > :last-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 0.5rem);
+    }
+    @media (min-width: 768px) {
+      .services-container > :last-child {
+        grid-column: auto;
+        width: auto;
+      }
+    }
   </style>
 </head>
 <body class="bg-brand-beige text-brand-dark font-sans selection:bg-brand-accent selection:text-white pt-16 md:pt-20">
