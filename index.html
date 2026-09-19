@@ -244,8 +244,17 @@
       justify-self: center;
       width: calc(50% - 0.5rem);
     }
+    #gallery-container > :last-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 0.5rem);
+    }
     @media (min-width: 768px) {
       .services-container > :last-child {
+        grid-column: auto;
+        width: auto;
+      }
+      #gallery-container > :last-child {
         grid-column: auto;
         width: auto;
       }
@@ -285,7 +294,7 @@
     </div>
   </header>
 
-  <section class="relative h-[60vh] md:h-[90vh] min-h-[380px] md:min-h-[600px] flex items-center justify-center text-center px-4 md:px-6 overflow-hidden" id="hero">
+  <section class="relative h-[70vh] md:h-[90vh] min-h-[500px] md:min-h-[600px] flex items-center justify-center text-center px-4 md:px-6 overflow-hidden" id="hero">
     <div class="absolute inset-0 z-0">
       <img alt="On-Time Welding Services" class="w-full h-full object-cover object-center md:object-[70%_50%] scale-100 md:scale-140 brightness-60" src="images/hero.webp" fetchpriority="high"/>
     </div>
@@ -512,13 +521,16 @@
             <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/773800189_122113914603303533_7671762276203379139_n.webp" loading="lazy"/>
           </div>
           <div class="group cursor-pointer md:flex-shrink-0 md:w-64 lg:w-80 xl:w-96 snap-start fade-in scale-in stagger-1" onclick="openLightbox(17)">
-            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/799972463_122116466919303533_5413804488902772544_n.webp" loading="lazy"/>
+            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/815210401_122117482605303533_7382509282441659890_n.webp" loading="lazy"/>
           </div>
           <div class="group cursor-pointer md:flex-shrink-0 md:w-64 lg:w-80 xl:w-96 snap-start fade-in scale-in stagger-2" onclick="openLightbox(18)">
-            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/813976755_122117482077303533_3430667512585231900_n.webp" loading="lazy"/>
+            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/806222758_1421669223390715_8380566953820151778_n.webp" loading="lazy"/>
           </div>
           <div class="group cursor-pointer md:flex-shrink-0 md:w-64 lg:w-80 xl:w-96 snap-start fade-in scale-in stagger-1" onclick="openLightbox(19)">
-            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/815210401_122117482605303533_7382509282441659890_n.webp" loading="lazy"/>
+            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/808546951_2331627820916637_3169198986138260727_n.webp" loading="lazy"/>
+          </div>
+          <div class="group cursor-pointer md:flex-shrink-0 md:w-64 lg:w-80 xl:w-96 snap-start fade-in scale-in stagger-2" onclick="openLightbox(20)">
+            <img alt="My Work" class="w-full h-48 md:h-56 lg:h-72 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" src="images/818250242_1842875533729796_2434680601394938387_n.webp" loading="lazy"/>
           </div>
         </div>
         <div class="text-center mt-8 fade-in">
@@ -730,9 +742,10 @@
       'images/788665717_1099450629689457_8283597650601386790_n.webp',
       'images/773736102_122113914519303533_9000058566807696316_n.webp',
       'images/773800189_122113914603303533_7671762276203379139_n.webp',
-      'images/799972463_122116466919303533_5413804488902772544_n.webp',
-      'images/813976755_122117482077303533_3430667512585231900_n.webp',
-      'images/815210401_122117482605303533_7382509282441659890_n.webp'
+      'images/815210401_122117482605303533_7382509282441659890_n.webp',
+      'images/806222758_1421669223390715_8380566953820151778_n.webp',
+      'images/808546951_2331627820916637_3169198986138260727_n.webp',
+      'images/818250242_1842875533729796_2434680601394938387_n.webp'
     ];
     let currentIndex = 0;
 
