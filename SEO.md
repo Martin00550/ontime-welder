@@ -35,10 +35,10 @@ Run from the repository root:
 npm ci
 npm run build
 npm run check
-python3 -m http.server 8765 --bind 127.0.0.1
+python3 -m http.server 8765 --bind 127.0.0.1 --directory public
 ```
 
-The committed `assets/site.css` is production-ready; the deployed site does not need Node.js or a runtime Tailwind compiler. Run the build after changing HTML utility classes or `styles/input.css`. Commit the generated CSS with the source changes. Font files and their OFL licenses are in `assets/fonts/`; they originate from Fontsource variable-font packages, version 5.3.0. Optimized image files are committed alongside the originals.
+The build compiles CSS, copies website files into the ignored `public/` directory and checks that output. `vercel.json` sets the build command to `npm run build` and output directory to `public`; no environment variables are required. The deployed site does not need Node.js or a runtime Tailwind compiler. Run the build after changing HTML utility classes or `styles/input.css`. Commit the generated `assets/site.css` with the source changes. Font files and their OFL licenses are in `assets/fonts/`; they originate from Fontsource variable-font packages, version 5.3.0. Optimized image files are committed alongside the originals.
 
 `npm run check` checks metadata, canonical consistency, image attributes and responsive candidates, local links and anchors, structured business/service data, robots, and sitemap contents. Browser validation also checks mobile/tablet/desktop layout, images, fonts, menu, slider, lightbox navigation and cookie preference storage, including a JavaScript-disabled reading check. Production Lighthouse scores, Google rich-result validation, real-user Core Web Vitals, redirects, HTTP cache headers and crawler access at the public host still need post-deployment checks. The current machine's proxy denied the read-only request to the public domain with HTTP 403, so this is not evidence of a public-site error.
 
@@ -53,7 +53,7 @@ No credentials are required. The generator does not deploy or submit anything to
 
 ## Launch and next priorities
 
-1. Deploy `index.html`, `cookies.html`, `assets/`, `images/`, `robots.txt`, `sitemap.xml` and `llms.txt` through the existing hosting workflow. This change has not been deployed, pushed or submitted to external services. Keep the source/build files in the repository; they do not need to be in the published web root.
+1. Deploy through the connected Vercel repository. The build creates `public/` with `index.html`, `cookies.html`, `assets/`, `images/`, `robots.txt`, `sitemap.xml` and `llms.txt`. Only `public/` is published; dependencies and source/build files stay outside the web root. A Git push is not proof that a Vercel deployment succeeded: confirm the deployment status before submitting URLs to search engines.
 2. At the host, redirect HTTP and non-www traffic permanently to `https://www.ontimeweldingservices.com/`. Redirect `/index.html` to `/` if supported. Confirm one redirect path, HTTPS, correct file MIME types, real 404 responses for missing URLs, and HTTP 200 for the sitemap and homepage. Canonical tags alone do not perform redirects. Check that the CDN or firewall allows legitimate search crawlers.
 3. In Google Search Console, verify the domain, submit `https://www.ontimeweldingservices.com/sitemap.xml`, inspect the homepage and request indexing after deployment. Repeat sitemap submission in Bing Webmaster Tools. These owner actions do not require adding credentials to this project. A sitemap is discovery guidance; it does not guarantee indexing.
 4. Verify and complete the real Google Business Profile: choose the most accurate available category (such as Welder), list actual services, and match the business name, phone and website. Confirm that the published address is accurate and appropriate for customer visits; if it is not a staffed customer-facing location, follow Google's service-area-business address rules. Enter only real hours. Add genuine project photos and request honest reviews from actual customers without incentives. No profile edits or review requests have been sent.

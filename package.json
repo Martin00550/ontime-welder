@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "tailwindcss -i ./styles/input.css -o ./assets/site.css --minify",
+    "build": "tailwindcss -i ./styles/input.css -o ./assets/site.css --minify && node scripts/build-static.mjs && node scripts/check-site.mjs public",
     "check": "node scripts/check-site.mjs",
     "set-site-url": "node scripts/set-site-url.mjs"
   },

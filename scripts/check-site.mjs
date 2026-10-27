@@ -3,6 +3,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 process.chdir(fileURLToPath(new URL('..', import.meta.url)));
+if (process.argv[2]) process.chdir(process.argv[2]);
 const read = path => readFileSync(path, 'utf8');
 const html = read('index.html');
 const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)[1];
