@@ -1,0 +1,13 @@
+{
+  "name": "ontime-welder-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss -i ./styles/input.css -o ./assets/site.css --minify",
+    "check": "node scripts/check-site.mjs",
+    "set-site-url": "node scripts/set-site-url.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
