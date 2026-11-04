@@ -21,6 +21,8 @@ let checkedAssets = 0;
 for (const page of ['index.html', 'cookies.html']) {
   const source = read(page);
   assert.equal((source.match(/<link rel="canonical"/g) || []).length, 1);
+  assert.match(source, /<link rel="icon" href="\/favicon-96x96\.png" type="image\/png" sizes="96x96"\/>/, 'Pages need a crawlable square favicon');
+  assert(!/<link rel="icon"[^>]+href="data:/.test(source), 'Embedded icons are not crawlable favicon URLs');
   assert(!/<script[^>]+src="https?:/.test(source), 'No third-party runtime scripts');
   assert(!/<link[^>]+href="https:\/\/fonts\./.test(source), 'Fonts should be self-hosted');
   const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
