@@ -1,67 +1,67 @@
-# SEO changes and launch checklist
+# SEO implementation and maintenance
 
-Primary URL: https://www.ontimeweldingservices.com/
+Primary domain: https://www.ontimeweldingservices.com/
 
-This is an implementation audit of the repository, not a report of search rankings. No Search Console, Analytics, Bing, keyword-volume or competitor datasets were supplied or accessed. Rankings, traffic, leads and AI citations have not been measured, and a number-one position cannot be promised. No Ultraship tooling, API keys, environment variables or cloud configuration changes are needed for these changes.
+## Page architecture
 
-## Focus and evidence
+| Canonical path | Main intent |
+| --- | --- |
+| `/` | Welding services and metal fabrication in Chilliwack; business overview |
+| `/services` | Service directory and navigation to every specialty |
+| `/mobile-welding-chilliwack` | Mobile and on-site welding in Chilliwack and the surrounding service area |
+| `/equipment-welding-repair` | Equipment, bucket and auger repairs, hardfacing and cracked weld enquiries |
+| `/aluminum-welding` | Aluminum repair and fabrication enquiries |
+| `/custom-metal-fabrication` | Individual parts, brackets, light shades and trailer metalwork |
+| `/gates-railings-fencing` | Property metalwork: gates, handrails, fencing, window and door covers |
+| `/stick-welding` | Stick-welding repair enquiries and preparation details |
+| `/mig-flux-core-welding` | MIG/flux core fabrication, production and repair enquiries |
 
-Keep the homepage as the landing page for the Chilliwack mobile-welding cluster. It covers the seven existing service categories and six documented service-area cities. The service links point to sections on this page; they are not separate indexed landing pages. Do not create near-identical city pages to target each location.
+Every specialty is linked from a homepage service card, the services hub, related-service cards and the service-page footer. Existing homepage section IDs remain intact. The homepage has a broader title/H1 than the mobile service page. There are no duplicate city landing pages, separate variants for “on site” and “on-site,” or pages targeting job seekers.
 
-| Area | Before | Implemented |
-| --- | --- | --- |
-| Search snippet | Brand-only title and H1 | Mobile welding + Chilliwack in the title, H1 and description |
-| Canonical | Relative `index.html` | Absolute HTTPS homepage, consistent with social metadata and structured data |
-| Discovery | No robots.txt or sitemap.xml | Crawl permission and a sitemap containing the one indexable canonical page |
-| Business data | Basic LocalBusiness without site identity | Linked LocalBusiness, WebSite and WebPage entities; seven actual service offers; six cities; existing social profiles |
-| Service copy | Short labels | Descriptions, stable service anchors, service-area explanation and five visible question-and-answer entries |
-| Lead path | Generic call labels | Free-estimate calls to action and linked phone/email, with instructions for sending photos, dimensions and job location |
-| Images | Large originals, repeated generic alt text, missing dimensions | Responsive WebP derivatives, descriptive alt text, intrinsic dimensions and lazy loading below the hero |
-| Styling and fonts | Tailwind CDN script and external Google Fonts requests | Prebuilt local CSS and licensed, self-hosted Latin fonts |
-| Script failure | Reveal classes initially hid content | Core content stays visible with JavaScript disabled |
-| Privacy link | Missing cookies.html | Working, noindex privacy/storage page reflecting the site's actual localStorage use |
+The owner-facing conversation confirmed that roadside welding should remain excluded. TIG, spot welding, stainless steel, cast iron, 24/7 emergency attendance, certification claims, invented case studies and ratings have not been added. Photos are drawn from the existing gallery and are not presented as newly documented case studies.
 
-The original 24-file WebP set is 6,949,219 bytes. Equivalent default optimized images total 1,628,172 bytes (76.6% smaller); responsive selection and full-size lightbox viewing change actual transfer sizes. The 768px hero is 90,308 bytes versus the 616,407-byte original. Full-resolution source photos remain available for the lightbox. These are file-size comparisons, not measured improvements in live Core Web Vitals.
+Content describes the existing service range and the information needed to discuss a job. It does not assert a flat price, response time, guaranteed repair suitability or unverified project outcomes. The page data and its FAQs can be edited when the welder supplies more detailed first-hand information.
 
-No ratings, testimonials, years in business, certifications, opening hours, prices or response-time promises have been invented. TIG welding was deliberately excluded because repository history says it is not offered. No plasma-cutting service is advertised merely because the gallery contains decorative cut-metal work.
+## Technical setup
 
-The visible questions help customers and search engines read the answers. No FAQ rich-result eligibility is claimed: Google generally limits FAQ rich results to authoritative government and health sites. `llms.txt` is an optional factual summary, not a known ranking factor or a guarantee of AI citation. General robots rules permit crawling; model-training bots are not presented as search-citation bots.
+- Self-referencing absolute canonical URLs and distinct page titles/descriptions.
+- LocalBusiness, WebSite, Service and WebPage entities; BreadcrumbList on service pages and the hub. The hub uses CollectionPage and ItemList.
+- Shared business identity, contact information, six service-area cities and actual social profiles.
+- Static, crawlable HTML and links; native FAQ disclosure controls work without JavaScript. No FAQ rich-result promise is made.
+- Nine canonical, indexable URLs in `sitemap.xml`. The privacy page is `noindex, follow` and excluded.
+- Vercel `cleanUrls: true`: `/aluminum-welding` serves its HTML file; `.html` paths redirect to clean URLs. The existing privacy page now canonicals to `/cookies`.
+- Local CSS, licensed self-hosted fonts, optimized gallery images and branded root-level favicons are retained.
+- No SPA fallback, fabricated modification dates, external runtime scripts, API keys or environment variables.
+- `llms.txt` lists the pages as an optional factual index. It is not an established ranking signal or a guarantee of AI citations.
 
-## Local verification
-
-Run from the repository root:
+## Build and edit
 
 ```sh
 npm ci
 npm run build
 npm run check
-python3 -m http.server 8765 --bind 127.0.0.1 --directory public
 ```
 
-The build compiles CSS, copies website files into the ignored `public/` directory and checks that output. `vercel.json` sets the build command to `npm run build` and output directory to `public`; no environment variables are required. The deployed site does not need Node.js or a runtime Tailwind compiler. Run the build after changing HTML utility classes or `styles/input.css`. Commit the generated `assets/site.css` with the source changes. Font files and their OFL licenses are in `assets/fonts/`; they originate from Fontsource variable-font packages, version 5.3.0. Optimized image files are committed alongside the originals.
+Edit service copy in `data/services.json`, shared page markup in `scripts/generate-services.mjs`, and styles in `styles/input.css`. The build generates the seven service HTML files, `services.html`, sitemap and service index in `llms.txt`; compiles CSS; stages only website files to `public/`; then validates the staged output. Commit the generated HTML, CSS and discovery files alongside their sources. Avoid hand-editing generated service HTML because the next build recreates it.
 
-`npm run check` checks metadata, canonical consistency, image attributes and responsive candidates, local links and anchors, structured business/service data, robots, and sitemap contents. Browser validation also checks mobile/tablet/desktop layout, images, fonts, menu, slider, lightbox navigation and cookie preference storage, including a JavaScript-disabled reading check. Production Lighthouse scores, Google rich-result validation, real-user Core Web Vitals, redirects, HTTP cache headers and crawler access at the public host still need post-deployment checks. The current machine's proxy denied the read-only request to the public domain with HTTP 403, so this is not evidence of a public-site error.
-
-If the primary domain changes, update all generated metadata together:
+The existing `scripts/set-site-url.mjs` still updates the primary domain and now regenerates service-page metadata and discovery files too:
 
 ```sh
 npm run set-site-url -- https://www.ontimeweldingservices.com/
-npm run check
 ```
 
-No credentials are required. The generator does not deploy or submit anything to search engines.
+The committed check covers all ten HTML documents, local assets and clean-path links, anchors, responsive images, canonical service URLs, schema provider references, breadcrumbs, related links, homepage discovery and exact sitemap membership. Browser checks cover all eight new routes at mobile, tablet and desktop widths, image loading, FAQ controls and navigation without JavaScript. The local test server models Vercel's configured clean URL behavior; it does not prove the remote deployment succeeded.
 
-## Launch and next priorities
+## Evidence and next actions
 
-1. Deploy through the connected Vercel repository. The build creates `public/` with `index.html`, `cookies.html`, `assets/`, `images/`, `robots.txt`, `sitemap.xml` and `llms.txt`. Only `public/` is published; dependencies and source/build files stay outside the web root. A Git push is not proof that a Vercel deployment succeeded: confirm the deployment status before submitting URLs to search engines.
-2. At the host, redirect HTTP and non-www traffic permanently to `https://www.ontimeweldingservices.com/`. Redirect `/index.html` to `/` if supported. Confirm one redirect path, HTTPS, correct file MIME types, real 404 responses for missing URLs, and HTTP 200 for the sitemap and homepage. Canonical tags alone do not perform redirects. Check that the CDN or firewall allows legitimate search crawlers.
-3. In Google Search Console, verify the domain, submit `https://www.ontimeweldingservices.com/sitemap.xml`, inspect the homepage and request indexing after deployment. Repeat sitemap submission in Bing Webmaster Tools. These owner actions do not require adding credentials to this project. A sitemap is discovery guidance; it does not guarantee indexing.
-4. Verify and complete the real Google Business Profile: choose the most accurate available category (such as Welder), list actual services, and match the business name, phone and website. Confirm that the published address is accurate and appropriate for customer visits; if it is not a staffed customer-facing location, follow Google's service-area-business address rules. Enter only real hours. Add genuine project photos and request honest reviews from actual customers without incentives. No profile edits or review requests have been sent.
-5. Make the existing Facebook/Instagram profiles and legitimate local business listings consistent with the same contact details and canonical website. Seek relevant links from real clients, suppliers and local trade/community organizations. Do not buy links or create duplicate locations.
-6. Add project case studies when the owner can provide real scope, material, problem, repair process and permitted photographs. Use those as evidence of experience. Add a dedicated service page only when there is enough distinct first-hand content and search/customer demand to justify it; link it from the homepage and add it to the sitemap then.
+The user shared an early Search Console report of 4 clicks and 100 impressions over the selected three-month range, plus a query table containing mobile/on-site welding, fabrication and aluminum enquiries. Query-level positions were not supplied. These are relevance signals, not evidence of large search volume, a particular keyword ranking or a forecast of new traffic.
 
-## Measure after launch
+After Vercel deploys the new commit:
 
-Save the preceding 28 days of Search Console data and compare with subsequent 28-day periods. Separate brand terms such as “On-Time Welding” and “On Time Welding Services” from non-brand queries. Watch actual impressions, clicks, CTR and average position for mobile welding Chilliwack, welder Chilliwack, welding repairs Chilliwack, aluminum welding Chilliwack and custom metal fabrication Chilliwack. These are relevance-based seed topics, not volume-backed or currently ranking keywords.
+1. Verify the new routes, canonical tags, favicon URLs and sitemap on the public domain. Confirm HTTPS, preferred www host, real 404s and no crawler-blocking firewall rules.
+2. Resubmit the existing sitemap in Search Console and Bing Webmaster Tools. Inspect the services hub and priority mobile/fabrication pages. Discovery does not guarantee indexing.
+3. Keep the Google Business Profile accurate, with real hours, actual service categories and permitted job photos. If the business address is not staffed for customer visits, follow Google's service-area-business rules.
+4. Collect actual project details: material, part, problem, work performed and approved photos. Add these to the matching service page before creating additional case-study pages. Do not infer job outcomes or materials from photos alone.
+5. Compare equivalent date ranges and country filters. Separate brand queries from non-brand service searches; track impressions, clicks, CTR, positions, indexing and actual calls/estimate enquiries. Link clicks alone are not completed leads.
 
-Track confirmed phone/email leads and ask customers how they found the business. Without analytics or call-tracking data, clicking a link must not be reported as a completed lead. Check Search Console indexing and mobile Core Web Vitals, and Bing performance/citations where available. Prioritize the actual non-brand queries that earn impressions and relevant leads before expanding content. Review the results after sufficient crawling and traffic; no fixed ranking deadline is asserted.
+No new rankings, index status, production Core Web Vitals, backlinks or AI citations have been verified. The changes improve relevance and crawlable architecture; they cannot guarantee a number-one ranking. No automated backlink outreach or external profile edits have been performed.

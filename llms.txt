@@ -14,6 +14,16 @@
 - [Service area](https://www.ontimeweldingservices.com/#service-area): Mobile welding locations; call to confirm availability.
 - [Welding questions](https://www.ontimeweldingservices.com/#faq): Service details and what to include in an estimate request.
 - [Request an estimate](https://www.ontimeweldingservices.com/#contact): Contact information for a free, no-obligation estimate.
-- [Privacy and browser storage](https://www.ontimeweldingservices.com/cookies.html): Browser preference storage and external links.
+- [Privacy and browser storage](https://www.ontimeweldingservices.com/cookies): Browser preference storage and external links.
 
 The website is the source of truth. No ratings, certifications, prices or opening hours are asserted here.
+
+## Service pages
+- [All services](https://www.ontimeweldingservices.com/services)
+- [Mobile Welding](https://www.ontimeweldingservices.com/mobile-welding-chilliwack): Mobile welding in Chilliwack and the Fraser Valley. On-site metal repairs for equipment and fabrication projects. Call 604-791-3422 for a free estimate.
+- [Equipment Welding Repair](https://www.ontimeweldingservices.com/equipment-welding-repair): Equipment welding repair based in Chilliwack: bucket and auger repairs, hardfacing and cracked weld repairs. Discuss your Fraser Valley job for a free estimate.
+- [Aluminum Welding](https://www.ontimeweldingservices.com/aluminum-welding): Aluminum welding and fabrication in Chilliwack, BC. Discuss aluminum repair, auto and marine project requirements with On-Time Welding Services.
+- [Custom Metal Fabrication](https://www.ontimeweldingservices.com/custom-metal-fabrication): Custom metal fabrication in Chilliwack: brackets, light shades, trailer metalwork and made-to-measure projects. Send a sketch for a free estimate.
+- [Gates, Railings & Fencing](https://www.ontimeweldingservices.com/gates-railings-fencing): Custom metal gates, handrails, fencing, and window or door covers in Chilliwack. Discuss dimensions and design with On-Time Welding Services.
+- [Stick Welding](https://www.ontimeweldingservices.com/stick-welding): Stick welding in Chilliwack for machinery, tools and steel repair enquiries. Discuss your material, damage and site requirements for a free estimate.
+- [MIG & Flux Core Welding](https://www.ontimeweldingservices.com/mig-flux-core-welding): MIG and flux core welding in Chilliwack for metal fabrication, production work and repair enquiries. Call On-Time Welding Services for a free estimate.

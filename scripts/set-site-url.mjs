@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 // One-time site metadata configuration. No environment variables or credentials.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -14,7 +15,7 @@ const absolute = path => new URL(path, base).href;
 
 for (const file of ['index.html', 'cookies.html']) {
   let html = readFileSync(file, 'utf8');
-  const page = file === 'index.html' ? base : absolute(file);
+  const page = file === 'index.html' ? base : absolute('cookies');
   html = html.replace(/(<link rel="canonical" href=")[^"]+("\/?>)/, `$1${page}$2`);
   html = html.replace(/(<meta property="og:url" content=")[^"]+("\/?>)/, `$1${page}$2`);
   html = html.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]+("\/?>)/g,
@@ -64,8 +65,10 @@ writeFileSync('llms.txt', `# On-Time Welding Services
 - [Service area](${base}#service-area): Mobile welding locations; call to confirm availability.
 - [Welding questions](${base}#faq): Service details and what to include in an estimate request.
 - [Request an estimate](${base}#contact): Contact information for a free, no-obligation estimate.
-- [Privacy and browser storage](${absolute('cookies.html')}): Browser preference storage and external links.
+- [Privacy and browser storage](${absolute('cookies')}): Browser preference storage and external links.
 
 The website is the source of truth. No ratings, certifications, prices or opening hours are asserted here.
 `);
 console.log(`Updated canonical URLs, social images, structured data and discovery files for ${base}`);
+
+execFileSync(process.execPath, ['scripts/generate-services.mjs'], { stdio: 'inherit' });
