@@ -396,7 +396,7 @@
 .service-hub-heading { max-width: 1200px; margin: auto; padding: 30px 24px 65px; }
 .service-hub-heading .section-kicker { margin-bottom: 22px; }
 .service-hub-heading h1 em { color: #a94200; font-style: normal; }
-.service-hub-heading > p:last-child { max-width: 650px; color: #625d55; font-size: 15px; line-height: 1.9; margin-top: 26px; }
+.service-hub-heading > p:last-of-type { max-width: 650px; color: #625d55; font-size: 15px; line-height: 1.9; margin-top: 26px; }
 .service-hub-grid { max-width: 1200px; padding: 0 24px 90px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .home-service-link { color: #edb083; font-size: 11px; display: inline-block; margin-top: auto; padding-top: 20px; text-decoration: underline; text-underline-offset: 4px; }
 .home-service-link:hover { color: #fff; }
@@ -425,3 +425,12 @@
  .service-quote { padding-top: 60px; padding-bottom: 60px; }
  .service-work-link { margin-left: 16px; }
 }
+
+.service-messaging { margin-top: 26px; }
+.service-messaging > p { font-size: 11px; opacity: .75; margin-bottom: 12px; }
+.service-messaging-links { display: flex; gap: 10px; }
+.service-messaging-links a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #ffffff12; border: 1px solid #ffffff30; transition: background .2s, border-color .2s, transform .2s; }
+.service-messaging-links a:hover { background: #ffffff25; border-color: #e6a372; transform: translateY(-2px); }
+.service-messaging-links svg { width: 19px; height: 19px; }
+.service-hub-heading .service-messaging-links a { background: #2c2c2c08; border-color: #2c2c2c30; }
+.service-hub-heading .service-messaging-links a:hover { background: #d3540015; border-color: #a94200; }

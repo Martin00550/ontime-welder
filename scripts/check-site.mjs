@@ -31,7 +31,7 @@ for (const page of pages) {
   const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(ids.length, new Set(ids).size, `${page} contains duplicate IDs`);
   for (const [, attribute, value] of source.matchAll(/\b(src|href)="([^"]+)"/g)) {
-    if (/^(?:data:|mailto:|tel:|https?:)/.test(value)) continue;
+    if (/^(?:data:|mailto:|tel:|sms:|https?:)/.test(value)) continue;
     const url = new URL(value, new URL(page, base));
     const path = resolvePage(decodeURIComponent(url.pathname).replace(/^\//, '') || 'index.html');
     assert(existsSync(path), `${page}: missing ${attribute} target ${value}`);
